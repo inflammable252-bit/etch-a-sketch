@@ -16,8 +16,25 @@ function addBox(count) {
 
 addBox(boxCount)
 
+randomizer = () => {
+    randomNum = () => {
+        return String(
+            (Math.round(
+                (Math.random()*255)
+                )
+            )
+        )
+    }
+
+return `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`
+}
+
+
 const boxes = document.querySelectorAll(".box");
 boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
-    boxdiv.style.backgroundColor = "red"
+    randomRGB = randomizer()
+    boxdiv.style.backgroundColor = randomRGB;
 }))
+
+console.log(randomizer())
 
