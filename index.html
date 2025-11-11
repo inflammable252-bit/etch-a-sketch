@@ -12,10 +12,18 @@
 </header>
 
 <div class="centerarea">
-<div class="sidebar-left"></div>
+<div class="sidebar-left">
+</div>
 
 <main>
-    <div class="top"></div>
+    <div class="top">
+        <div id="gridWrapper">
+        <p id="gridLabel">Grid size: </p>
+        <input type="number" name="gridInput" id="gridInput" min="1" max="100" placeholder="16">
+        <input type="button" id="gridSubmit" value="Submit">
+    </div>
+    <p id="error"></p>
+    </div>
     <div class="container"></div>
 </main>
 
