@@ -32,28 +32,60 @@ main {
     flex-direction: column;
     align-items: center;
 }
-
-#top-wrapper{
-    margin: 25px 0px 10px 0px;
+div.top {
+    margin-top: 30px;
     display: flex;
-    align-items: center;
+    width:800px;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
-#gridPrompt {
+#monochrome, #pastel {
     margin: 0px;
-    padding: 7px 15px;
+    padding: 5px 12px;
+    height: 2em;
     background-color:#F9F3F1;
     border-radius: 8px;
     border-width: 2.8px;
     border-color: #f2c7e6da;
     font-family: monospace;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
+    justify-items: flex-start;
+}
+
+#colorselect {
+    margin-bottom: 5px;
+    padding: 3px;
+    height: 2.3em;
+    background-color:#F9F3F1;
+    border-radius: 8px;
+    border-width: 2.8px;
+    border-color: #f2c7e6da;
+}
+
+
+#gridPrompt {
+    margin: 0px;
+    padding: 9px 19px;
+    background-color:#F9F3F1;
+    border-radius: 8px;
+    border-width: 2.8px;
+    border-color: #f2c7e6da;
+    font-family: monospace;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+#error {
+    margin-top: 10px;
+    font-size: 18px;
+    color:fuchsia;
 }
 
 .container {
     background-color: #EBD8D0;
-    margin: 15px 15px 20px 15px;
+    margin: 0px 15px 20px 15px;
     padding: 10px;
     height: 800px;
     width: 800px;
@@ -74,11 +106,4 @@ div.box {
     border-radius: 3px;
     border: 1px solid #d5a99a34;
     margin: 1px;
-}
-
-#error {
-    margin: 0px;
-    font-size: 18px;
-    color:fuchsia;
-    text-align: center;
 }

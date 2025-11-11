@@ -1,16 +1,37 @@
 let boxInput=16;
 let boxCount = boxInput * boxInput;
 canvas = 800;
+let colormode = "pastel"
+let colorselect = ""
 
 container = document.querySelector(".container")
-
 gridPrompt = document.querySelector("#gridPrompt")
 errorText = document.querySelector("#error")
+pastelButton = document.querySelector("#pastel")
+monochromeButton = document.querySelector("#monochrome")
+colorButton = document.querySelector("#colorselect")
 
 addBox(boxCount)
 
+pastelButton.addEventListener("click", () => {
+    colormode = "pastel";
+    enableRGB();
+    })
+
+monochromeButton.addEventListener("click", () => {
+    colormode = "monochrome";
+    enableMonochrome();
+    })
+
+colorButton.addEventListener("input", (event) => {
+    colormode = "select";
+    colorselect = event.target.value;
+    enableColor();
+    })
+
+
 gridPrompt.addEventListener("click", () => {
-    let promptInput = prompt("Enter grid size up to 100.");
+    let promptInput = prompt("Enter new grid size. Must be a number between 1-100.");
     numberInput = parseInt(promptInput)
     if (numberInput > 100) {
         return errorText.textContent = "Must be a number between 1-100.";
@@ -39,10 +60,20 @@ function addBox(count) {
     box.style.width = ((canvas / boxInput) - 4) + "px";
     box.style.height = ((canvas / boxInput) - 4) + "px";
     }
-enableColors()
+switch (colormode) {
+    case "pastel":
+        enableRGB()
+        break;
+    case "monochrome":
+        enableMonochrome()
+        break;
+    case "select":
+        enableColor();
+        break;
+    }
 }
 
-randomizer = () => {
+randomizerRGB = () => {
     randomNum = () => {
         return String(
             (Math.round((Math.random()*190) + 65)))
@@ -51,11 +82,37 @@ randomizer = () => {
 return `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`
 }
 
-function enableColors() {
+function enableRGB() {
     const boxes = document.querySelectorAll(".box");
+
     boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
-        randomRGB = randomizer()
+        randomRGB = randomizerRGB()
         boxdiv.style.backgroundColor = randomRGB;
     }))
 }
 
+randomizerMonochrome = () => {
+    randomNum = () => {
+        return String(
+            (Math.round((Math.random()*200) + 55)))
+        }
+    singleRGB = randomNum();
+    return `rgb(${singleRGB}, ${singleRGB}, ${singleRGB})`
+} 
+
+function enableMonochrome() {
+    const boxes = document.querySelectorAll(".box");
+
+    boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
+        randomMonochrome = randomizerMonochrome()
+        boxdiv.style.backgroundColor = randomMonochrome;
+    }))
+}
+
+function enableColor() {
+    const boxes = document.querySelectorAll(".box");
+
+     boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
+        boxdiv.style.backgroundColor = colorselect;
+    }))
+}
