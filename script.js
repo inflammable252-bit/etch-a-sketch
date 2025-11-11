@@ -4,28 +4,31 @@ canvas = 800;
 
 container = document.querySelector(".container")
 
-const gridInput = document.querySelector("#gridInput")
-const gridSubmit = document.querySelector("#gridSubmit")
+gridPrompt = document.querySelector("#gridPrompt")
+errorText = document.querySelector("#error")
 
 addBox(boxCount)
 
-gridInput.addEventListener("input", (e) => {
-return boxInput = e.target.value;
-})
-
-gridSubmit.addEventListener("click", () => {
-    errorText = document.querySelector("#error")
-    if (boxInput > 16) {
-        return errorText.textContent = "Maximum size: 100";
+gridPrompt.addEventListener("click", () => {
+    let promptInput = prompt("Enter grid size up to 100.");
+    numberInput = parseInt(promptInput)
+    if (numberInput > 100) {
+        return errorText.textContent = "Must be a number between 1-100.";
+    }
+    else if (isNaN(numberInput)) {
+        return errorText.textContent = "Must be a number between 1-100."
+    }
+    else if (numberInput === null) {
+        return
     }
     else {
+        boxInput = numberInput
         errorText.textContent = ""
+        let oldBoxes = document.querySelectorAll(".box")
+        oldBoxes.forEach((node) => node.remove())
+        boxCount = boxInput * boxInput;
+        addBox(boxCount);
     }
-   
-    let oldBoxes = document.querySelectorAll(".box")
-    oldBoxes.forEach((node) => node.remove())
-    boxCount = boxInput * boxInput;
-addBox(boxCount);
 })
 
 function addBox(count) {
@@ -38,8 +41,6 @@ function addBox(count) {
     }
 enableColors()
 }
-
-
 
 randomizer = () => {
     randomNum = () => {
@@ -57,6 +58,4 @@ function enableColors() {
         boxdiv.style.backgroundColor = randomRGB;
     }))
 }
-
-console.log(randomizer())
 
