@@ -10,8 +10,9 @@ body {
 header {
     background-color: #EA9ADB;
     color:#F4E1E8;
-    font-size: 1.6em;
+    font-size: 1.8em;
     font-weight: bold;
+    letter-spacing: 2rem;
     text-align: center;
 }
 
@@ -33,16 +34,21 @@ main {
     align-items: center;
 }
 div.top {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     width:800px;
     align-items: flex-end;
     justify-content: space-between;
 }
 
+div.left-wrapper > p {
+    margin: 15px 5px 8px;
+    padding: 0px;
+}
+
 #monochrome, #pastel {
     margin: 0px;
-    padding: 5px 12px;
+    padding: 6px 12px;
     height: 2em;
     background-color:#F9F3F1;
     border-radius: 8px;
@@ -51,6 +57,8 @@ div.top {
     font-family: monospace;
     font-size: 16px;
     font-weight: 500;
+    text-align: center;
+    vertical-align: center;
     justify-items: flex-start;
 }
 
@@ -84,7 +92,7 @@ div.top {
 }
 
 .container {
-    background-color: #EBD8D0;
+    background-color: rgb(235, 216, 208);
     margin: 0px 15px 20px 15px;
     padding: 10px;
     height: 800px;

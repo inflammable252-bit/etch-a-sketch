@@ -29,6 +29,37 @@ colorButton.addEventListener("input", (event) => {
     enableColor();
     })
 
+window.addEventListener("mouseup", (event) => {
+    const boxes = document.querySelectorAll(".box");
+    if (event.button = 2) {
+        container.addEventListener("contextmenu", (event) => {
+            event.preventDefault()
+        })
+        boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
+            boxdiv.style.backgroundColor = "rgb(235, 216, 208)";
+        }))
+    }
+})
+
+window.addEventListener("click", (event) => {
+    if (event.button = 1) {
+        enabler();
+    }
+})
+
+function enabler() {
+    switch (colormode) {
+    case "pastel":
+        enableRGB()
+        break;
+    case "monochrome":
+        enableMonochrome()
+        break;
+    case "select":
+        enableColor();
+        break;
+    }
+}
 
 gridPrompt.addEventListener("click", () => {
     let promptInput = prompt("Enter new grid size. Must be a number between 1-100.");
@@ -60,17 +91,7 @@ function addBox(count) {
     box.style.width = ((canvas / boxInput) - 4) + "px";
     box.style.height = ((canvas / boxInput) - 4) + "px";
     }
-switch (colormode) {
-    case "pastel":
-        enableRGB()
-        break;
-    case "monochrome":
-        enableMonochrome()
-        break;
-    case "select":
-        enableColor();
-        break;
-    }
+enabler()
 }
 
 randomizerRGB = () => {
