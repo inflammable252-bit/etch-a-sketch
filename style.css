@@ -34,7 +34,7 @@ main {
     align-items: center;
 }
 div.top {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     width:800px;
     align-items: flex-end;

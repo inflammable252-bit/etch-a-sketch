@@ -29,20 +29,22 @@ colorButton.addEventListener("input", (event) => {
     enableColor();
     })
 
+container.addEventListener("contextmenu", (event) => {
+    event.preventDefault()
+})
+
 window.addEventListener("mouseup", (event) => {
     const boxes = document.querySelectorAll(".box");
-    if (event.button = 2) {
-        container.addEventListener("contextmenu", (event) => {
-            event.preventDefault()
-        })
+    if (event.button === 2) {
         boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
-            boxdiv.style.backgroundColor = "rgb(235, 216, 208)";
+            boxdiv.style.backgroundColor = "rgb(235 216 208)";
+            boxdiv.style.opacity = "1"
         }))
     }
 })
 
 window.addEventListener("click", (event) => {
-    if (event.button = 1) {
+    if (event.button === 0) {
         enabler();
     }
 })
@@ -99,17 +101,7 @@ randomizerRGB = () => {
         return String(
             (Math.round((Math.random()*190) + 65)))
     }
-
-return `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`
-}
-
-function enableRGB() {
-    const boxes = document.querySelectorAll(".box");
-
-    boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
-        randomRGB = randomizerRGB()
-        boxdiv.style.backgroundColor = randomRGB;
-    }))
+return `rgb(${randomNum()} ${randomNum()} ${randomNum()})`
 }
 
 randomizerMonochrome = () => {
@@ -118,15 +110,31 @@ randomizerMonochrome = () => {
             (Math.round((Math.random()*200) + 55)))
         }
     singleRGB = randomNum();
-    return `rgb(${singleRGB}, ${singleRGB}, ${singleRGB})`
-} 
+    return `rgb(${singleRGB} ${singleRGB} ${singleRGB})`
+}
+
+function enableRGB() {
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
+        randomRGB = randomizerRGB();
+        let currentOpacity = parseFloat(boxdiv.style.opacity) || 0.1;
+        currentOpacity = Math.min(currentOpacity + 0.1, 1)
+        
+        boxdiv.style.backgroundColor = randomRGB;
+        boxdiv.style.opacity = currentOpacity;
+    }))
+}
 
 function enableMonochrome() {
     const boxes = document.querySelectorAll(".box");
 
     boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
         randomMonochrome = randomizerMonochrome()
+        let currentOpacity = parseFloat(boxdiv.style.opacity) || 0.1;
+        currentOpacity = Math.min(currentOpacity + 0.1, 1)
+
         boxdiv.style.backgroundColor = randomMonochrome;
+        boxdiv.style.opacity = currentOpacity;
     }))
 }
 
@@ -134,6 +142,19 @@ function enableColor() {
     const boxes = document.querySelectorAll(".box");
 
      boxes.forEach((boxdiv) => boxdiv.addEventListener("mouseover", () => {
-        boxdiv.style.backgroundColor = colorselect;
+         let currentOpacity = parseFloat(boxdiv.style.opacity) || 0.1;
+         currentOpacity = Math.min(currentOpacity + 0.1, 1)
+         
+         boxdiv.style.opacity = currentOpacity;
+         boxdiv.style.backgroundColor = colorselect;
     }))
 }
+
+/* 
+Future refactoring / consideration for future projects:
+enable() functions only set the mode variable. Single mouseover listener for mouse 2 = erase and switch statements for current mode.
+
+    ex. case "pastel":
+            target.style.backgroundColor = randomizerRGB();
+            break;
+*/
