@@ -19,8 +19,8 @@ function addBox(count) {
     const box = document.createElement("div");
     box.classList.toggle("box");
     container.appendChild(box);
-    box.style.width = ((canvas / boxInput) - 4) + "px";
-    box.style.height = ((canvas / boxInput) - 4) + "px";
+    box.style.width = ((canvas / boxInput) - 2) + "px";
+    box.style.height = ((canvas / boxInput) - 2) + "px";
     }
 
 let boxes = document.querySelectorAll(".box");
