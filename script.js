@@ -101,6 +101,8 @@ randomizerMonochrome = () => {
     return `rgb(${singleRGB} ${singleRGB} ${singleRGB})`
 }
 
+}
+
 gridPrompt.addEventListener("click", () => {
     let promptInput = prompt("Enter new grid size. Must be a number between 1-100.");
     numberInput = parseInt(promptInput)
@@ -122,5 +124,3 @@ gridPrompt.addEventListener("click", () => {
         addBox(boxCount);
     }
 })
-
-}
